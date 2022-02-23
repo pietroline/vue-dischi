@@ -1,5 +1,7 @@
 <template>
-    <i class="bi bi-spotify"></i>
+    <a href="#">
+        <i class="bi bi-spotify"></i>
+    </a>
 </template>
 
 <script>
