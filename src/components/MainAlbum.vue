@@ -1,10 +1,10 @@
 <template>
-    <div id="container" class="d-flex align-items-center">
+    <div id="container" class="d-flex align-items-center justify-content-center">
 
         <div v-if="loadingProgress">
-            <div class="loading">
+            <div class="text-white d-flex align-items-center">
                <h1>Sto caricando la pagina...</h1>
-               <i class="bi bi-hourglass-split"></i>
+               <i class="bi bi-hourglass-split fs-1"></i>
             </div>
         </div>
         <div v-else>
@@ -68,18 +68,6 @@
     #container{
         height: calc(100vh - 3rem);
         background-color: $secondaryColor;
-
-        .loading{
-            color: #fff;
-
-            display: flex;
-            align-items: center;
-            
-            i{
-                font-size: 5rem;
-            }
-
-        }
 
         .row{
             width: 60%;
