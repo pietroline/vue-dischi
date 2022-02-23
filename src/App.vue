@@ -4,6 +4,10 @@
     <header>
       <MyHeader/>
     </header>
+
+    <main>
+      <MainAlbum/>
+    </main>
   
 
   </div>
@@ -12,11 +16,14 @@
 <script>
 
   import MyHeader from "./components/MyHeader.vue";
+  import MainAlbum from "./components/MainAlbum.vue";
+
 
   export default {
     name: 'App',
     components: {
       MyHeader,
+      MainAlbum,
     }
   }
 
