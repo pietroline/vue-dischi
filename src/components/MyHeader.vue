@@ -21,7 +21,7 @@
     @import "./../assets/variables.scss";
 
     #container{
-        background-color: $headerColor;
+        background-color: $primaryColor;
         height: 3rem;
     }
 </style>
