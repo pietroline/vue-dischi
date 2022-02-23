@@ -1,11 +1,23 @@
 <template>
     <div id="container" class="d-flex align-items-center">
 
-       <div class="row row-cols-5">
-           <div class="col" v-for="(song, index) in songs" :key="index">
-                <SongCard :song="song"/>
-           </div>
-       </div>
+        <div v-if="loadingProgress">
+            <div class="loading">
+               <h1>Sto caricando la pagina...</h1>
+               <i class="bi bi-hourglass-split"></i>
+            </div>
+        </div>
+        <div v-else>
+            <div class="row row-cols-5">
+                <div class="col" v-for="(song, index) in songs" :key="index">
+                    <SongCard :song="song"/>
+                </div>
+            </div>
+        </div>
+        
+      
+        
+      
 
     </div>
 </template>
@@ -28,6 +40,7 @@
         data(){
             return{
                 songs: [],
+                loadingProgress: true,
                 endPoint: "https://flynn.boolean.careers/exercises/api/array/music",
             }
         },
@@ -37,6 +50,7 @@
                 axios.get(this.endPoint)
                     .then(response => {
                         this.songs = response.data.response;
+                        this.loadingProgress = false;
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -54,6 +68,18 @@
     #container{
         height: calc(100vh - 3rem);
         background-color: $secondaryColor;
+
+        .loading{
+            color: #fff;
+
+            display: flex;
+            align-items: center;
+            
+            i{
+                font-size: 5rem;
+            }
+
+        }
 
         .row{
             width: 60%;
