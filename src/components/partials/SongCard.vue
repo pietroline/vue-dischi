@@ -11,8 +11,6 @@
     export default {
         name: "SongCard",
         props: ["song"]
-            
-        
     }
 </script>
 
