@@ -1,12 +1,12 @@
 <template>
-    <div id="container">
+    <div id="container" class="d-flex align-items-center">
+
        <div class="row row-cols-5">
-           <div class="col"
-                v-for="(song, index) in songs" :key="index">
+           <div class="col" v-for="(song, index) in songs" :key="index">
                 <SongCard :song="song"/>
            </div>
-           
        </div>
+
     </div>
 </template>
 

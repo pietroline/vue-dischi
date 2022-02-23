@@ -1,9 +1,19 @@
 <template>
     <div id="contenitore">
-        <img :src="song.poster" :alt="song.ganze">
-        <div>{{song.title}}</div>
-        <div>{{song.author}}</div>
-        <div>{{song.year}}</div>
+        
+        <a href="#" class="card my-2">
+
+            <div class="d-flex justify-content-center">
+                <img class="w-75 py-3" :src="song.poster" :alt="song.ganze">
+            </div>
+            
+            <div class="card-body text-center">
+                <h1 class="fs-5">{{song.title}}</h1>
+                <div class="text_grey">{{song.author}}</div>
+                <div class="text_grey">{{song.year}}</div>
+            </div>
+        </a>
+
     </div>
 </template>
 
@@ -15,11 +25,27 @@
 </script>
 
 <style lang="scss" scoped>
+
+    @import "./../../assets/variables.scss";
+
     #contenitore{
-        img{
-           width: 100%; 
+
+        a{
+            text-decoration: none;
         }
 
-        color: #fff;
+        .card{
+            background-color: $primaryColor;
+            color: #fff;
+
+            height: 22rem;
+
+            text-transform: uppercase;
+
+            .text_grey{
+                color: $greyText;
+            }
+        }
+    
     }
 </style>
