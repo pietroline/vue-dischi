@@ -26,20 +26,75 @@
     export default {
         name: "MainAlbum",
         components:{
-            SongCard,
+            SongCard, 
             LoadingPage,
         },
-        props: ["genereSelezionato"],
+        props: ["genereSelezionato", "autoreSelezionato"],
         computed:{
             filterSongs(){
 
-                if(this.genereSelezionato == ""){
-                    return this.songs;
-                }else{
-                    return this.songs.filter(item =>{
-                        return item.genre == this.genereSelezionato;
-                        
+                if(this.genereSelezionato != ""){
+
+                    this.resetAuthorArray();
+
+                    //popolo array author con i diversi autori musicali presenti
+                    this.songs.forEach(element => {
+                        if(!this.authorArray.includes(element.author) && element.genre == this.genereSelezionato){
+                            this.authorArray.push(element.author);
+                        }
                     });
+                    this.$emit("autoriMusicali", this.authorArray);
+                    
+                    if(this.autoreSelezionato != ""){
+                        return this.songs.filter(item =>{
+                            return item.author == this.autoreSelezionato;
+                            
+                        });
+                    }else{
+                        return this.songs.filter(item =>{
+                            return item.genre == this.genereSelezionato;
+                            
+                        });
+                    }
+                    
+                }else if(this.autoreSelezionato != ""){
+
+                    this.resetGenreArray();
+                    
+                    //popolo array genre con i diversi generi musicali presenti
+                    this.songs.forEach(element => {
+                        if(!this.genreArray.includes(element.genre) && element.author == this.autoreSelezionato){
+                            this.genreArray.push(element.genre);
+                        }
+                    });
+                    this.$emit("generiMusicali", this.genreArray);
+
+                    return this.songs.filter(item =>{
+                        return item.author == this.autoreSelezionato;
+                    });
+
+                }else{
+
+                    this.resetAuthorArray();
+                    this.resetGenreArray();
+
+                    //popolo array genre con i diversi generi musicali presenti
+                    this.songs.forEach(element => {
+                        if(!this.genreArray.includes(element.genre)){
+                            this.genreArray.push(element.genre);
+                        }
+                    });
+                    this.$emit("generiMusicali", this.genreArray);
+
+                    //popolo array author con i diversi autori musicali presenti
+                    this.songs.forEach(element => {
+                        if(!this.authorArray.includes(element.author)){
+                            this.authorArray.push(element.author);
+                        }
+                    });
+                    this.$emit("autoriMusicali", this.authorArray);
+
+                    return this.songs;
                 }
             }
         },
@@ -50,11 +105,19 @@
             return{
                 songs: [],
                 genreArray: [],
+                authorArray: [],
                 loadingProgress: true,
                 endPoint: "https://flynn.boolean.careers/exercises/api/array/music",
             }
         },
         methods: {
+
+            resetAuthorArray(){
+                this.authorArray=[];
+            },
+            resetGenreArray(){
+                this.genreArray=[];
+            },
 
             getInfoSongs(){
                 axios.get(this.endPoint)
@@ -62,15 +125,7 @@
                         this.songs = response.data.response;
                         this.loadingProgress = false;
 
-                        //popolo array genre con i diversi generi musicali presenti
-                        this.songs.forEach(element => {
-                            if(!this.genreArray.includes(element.genre)){
-                                this.genreArray.push(element.genre);
-                            }
-                        });
-                        this.$emit("generiMusicali", this.genreArray);
-
-                    })
+                    }) 
                     .catch(function (error) {
                         console.log(error);
                     })

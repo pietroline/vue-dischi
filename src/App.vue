@@ -2,11 +2,11 @@
   <div id="app">
 
     <header>
-      <MyHeader :genres="genres" @filtraGeneri="filter"/>
+      <MyHeader :genres="genres" :authors="authors" @filtraGeneri="genreFilter" @filtraAutori="authorFilter"/>
     </header>
 
     <main>
-      <MainAlbum @generiMusicali="findGenre" :genereSelezionato="genereSelezionato"/>
+      <MainAlbum @generiMusicali="findGenre" @autoriMusicali="findAuthor" :genereSelezionato="genereSelezionato" :autoreSelezionato="autoreSelezionato"/>
     </main>
   
   </div>
@@ -27,15 +27,23 @@
     data(){
       return{
         genres: [],
+        authors: [],
         genereSelezionato: "",
+        autoreSelezionato: "",
       }
     },
     methods:{
       findGenre(generi){
         this.genres = generi;
       },
-      filter(genere){
+      findAuthor(autori){
+        this.authors = autori;
+      },
+      genreFilter(genere){
         this.genereSelezionato = genere;
+      },
+      authorFilter(autore){
+        this.autoreSelezionato = autore;
       }
     }
   }

@@ -6,7 +6,7 @@
             </div>
             <div class="col d-flex align-items-center justify-content-end me-5">
                 <form>
-                    <select name="" v-model="selected" @change="filtraGeneri()">
+                    <select class="mx-2" name="genres" v-model="genreSelected" @change="filtraGeneri()">
 
                         <option value="">Scegli un genere</option>
                         <option 
@@ -15,7 +15,17 @@
                             :value="genre">
                             
                         {{genre}}</option>
+                    </select>
 
+                    <select class="mx-2" name="authors" v-model="authorSelected" @change="filtraAutori()">
+
+                        <option value="">Scegli un autore</option>
+                        <option 
+                            v-for="(author, index) in authors" 
+                            :key="index" 
+                            :value="author">
+                            
+                        {{author}}</option>
                     </select>
                 </form>
             </div>
@@ -34,15 +44,19 @@
         components:{
             LogoVerde,
         },
-        props: ["genres"],
+        props: ["genres", "authors"],
         data(){
           return{
-              selected: ""
+              genreSelected: "",
+              authorSelected: ""
           }  
         },
         methods:{
             filtraGeneri(){
-                this.$emit("filtraGeneri", this.selected);
+                this.$emit("filtraGeneri", this.genreSelected);
+            },
+            filtraAutori(){
+                this.$emit("filtraAutori", this.authorSelected);
             }
         }
     }
