@@ -4,7 +4,7 @@
         <a href="#" class="card d-flex align-items-center my-2">
             <!-- la classe card prevede display flex con flex-direction column -->
             <div class="d-flex justify-content-center">
-                <img class="w-75 py-3" :src="song.poster" :alt="song.ganze">
+                <img class="w-75 py-3" :src="song.poster" :alt="song.genre">
             </div>
             
             <div class="card-body text-center">
