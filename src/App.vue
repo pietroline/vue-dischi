@@ -2,14 +2,13 @@
   <div id="app">
 
     <header>
-      <MyHeader/>
+      <MyHeader :genres="genres" @filtraGeneri="filter"/>
     </header>
 
     <main>
-      <MainAlbum/>
+      <MainAlbum @generiMusicali="findGenre" :genereSelezionato="genereSelezionato"/>
     </main>
   
-
   </div>
 </template>
 
@@ -24,6 +23,20 @@
     components: {
       MyHeader,
       MainAlbum,
+    },
+    data(){
+      return{
+        genres: [],
+        genereSelezionato: "",
+      }
+    },
+    methods:{
+      findGenre(generi){
+        this.genres = generi;
+      },
+      filter(genere){
+        this.genereSelezionato = genere;
+      }
     }
   }
 
