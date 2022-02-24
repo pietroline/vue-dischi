@@ -2,10 +2,7 @@
     <div id="container" class="d-flex align-items-center justify-content-center">
 
         <div v-if="loadingProgress">
-            <div class="text-white d-flex align-items-center">
-               <h1>Sto caricando la pagina...</h1>
-               <i class="bi bi-hourglass-split fs-1"></i>
-            </div>
+          <loadingPage/>
         </div>
         <div v-else>
             <div class="row row-cols-5">
@@ -28,11 +25,13 @@
     const axios = require('axios');
 
     import SongCard from "./partials/SongCard.vue";
+    import LoadingPage from "./partials/LoadingPage.vue"
 
     export default {
         name: "MainAlbum",
         components:{
             SongCard,
+            LoadingPage,
         },
         mounted(){
             this.getInfoSongs();
