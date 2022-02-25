@@ -38,7 +38,7 @@
             background-color: $primaryColor;
             color: #fff;
 
-            height: 23rem;
+            height: 22rem;
 
             .card-body{
                 width: 90%;

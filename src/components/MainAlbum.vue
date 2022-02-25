@@ -1,11 +1,11 @@
 <template>
-    <div id="container" class="d-flex align-items-center justify-content-center">
+    <div id="container" >
 
         <div v-if="loadingProgress">
           <loadingPage/>
         </div>
         <div v-else>
-            <div class="row" :class="filterSongs.length>=5?'row-cols-5':`row-cols-${filterSongs.length}`">
+            <div class="row row-cols-5">
                 <div class="col " v-for="(song, index) in filterSongs" :key="index">
                     <SongCard :song="song"/>
                 </div>
@@ -142,6 +142,7 @@
     #container{
         height: calc(100vh - 3rem);
         background-color: $secondaryColor;
+        padding: 5rem;
 
         .row{
             width: 60%;
