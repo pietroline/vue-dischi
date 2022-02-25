@@ -5,7 +5,7 @@
           <loadingPage/>
         </div>
         <div v-else>
-            <div class="row" :class="filterSongs.length>=5?'row-cols-5':`row-cols-${filterSongs.length +1}`">
+            <div class="row" :class="filterSongs.length>=5?'row-cols-5':`row-cols-${filterSongs.length}`">
                 <div class="col " v-for="(song, index) in filterSongs" :key="index">
                     <SongCard :song="song"/>
                 </div>
